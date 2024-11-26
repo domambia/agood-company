@@ -13,7 +13,7 @@ import { Paragraph } from "@/styles/app-common-styled";
 import exp from "constants";
 
 export const SideBar = styled.div`
-  width: 280px;
+  width: 17.5rem;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.primary};
   color: ${({ theme }) => theme.colors.primary};
@@ -22,6 +22,7 @@ export const SideBar = styled.div`
   justify-content: space-between;
   padding: 1rem;
   margin: 0.2rem;
+  border-radius: 0.3rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -33,8 +34,8 @@ export const SideBar = styled.div`
 `;
 export const SideBarHeader = styled.div`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
 `;
 export const SideBarHeaderIcon = styled.div`

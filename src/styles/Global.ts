@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
         color: ${({ theme }) => theme.colors.text};
         font-size: 87.5%;
         height: 100vh;
+        max-width: 75rem;
         line-height: 1.5;
     }
 `;

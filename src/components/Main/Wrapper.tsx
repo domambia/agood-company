@@ -1,5 +1,4 @@
 "use client";
-import { Container } from "@/styles/app-common-styled";
 import styled from "styled-components";
 import { SideBar, SideNav } from "../SideNav/SideNav";
 import React from "react";
@@ -7,19 +6,39 @@ import React from "react";
 interface WrapperProps {
   children?: React.ReactNode;
 }
+
 export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   return (
-    <Container>
-      <AppPageWrapper>
+    <MainWrapper>
+      <SideBarWrapper>
         <SideBar>
           <SideNav />
         </SideBar>
-      </AppPageWrapper>
+      </SideBarWrapper>
 
-      <AppPageContent>{children}</AppPageContent>
-    </Container>
+      <ContentWrapper>{children}</ContentWrapper>
+    </MainWrapper>
   );
 };
 
-export const AppPageWrapper = styled.div``;
-export const AppPageContent = styled.div``;
+export const MainWrapper = styled.div`
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+`;
+
+export const SideBarWrapper = styled.div`
+  width: 17%;
+  background-color: #f4f4f4;
+  border-right: 1px solid #e0e0e0;
+`;
+
+export const ContentWrapper = styled.div`
+  width: 83%;
+  flex-grow: 1;
+  margin: 0.2rem;
+  border-radius: 0.3rem;
+  padding: 1rem;
+  overflow-y: auto;
+`;
