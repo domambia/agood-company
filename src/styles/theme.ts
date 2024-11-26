@@ -19,3 +19,4 @@ export const theme = {
     large: "2.3rem",
   },
 };
+``;
