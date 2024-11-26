@@ -8,3 +8,11 @@ export const Container = styled.div`
   width: 100%;
 `;
 export const Link = styled.a``;
+
+export const Paragraph = styled.p`
+  font-size: 14px;
+  color: #000;
+  font-family: ${({ theme }) => theme.fonts.main};
+  font-weight: 400;
+  line-height: 1.5;
+`;

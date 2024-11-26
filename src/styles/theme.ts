@@ -3,14 +3,15 @@ export const theme = {
     primary: "#ffffff",
     secondary: "#1c1c1e",
     background: "#f0f0f0",
-    text: "0F0840",
+    highlight: "#f6f0ff",
+    text: { primary: "0F0840", secondary: "282C2F" },
     shimmers: {
       primary: "#e3fae8",
       secondary: "#fbf2fb",
     },
   },
   fonts: {
-    main: "Poppins, sans-serif",
+    main: "Manrope, sans-serif",
     code: "Courier, monospace",
   },
   fontSizes: {
