@@ -10,7 +10,6 @@ import {
   HeadsetIcon,
 } from "lucide-react";
 import { Paragraph } from "@/styles/app-common-styled";
-import exp from "constants";
 
 export const SideBar = styled.div`
   width: 17.5rem;

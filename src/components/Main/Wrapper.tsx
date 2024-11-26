@@ -29,13 +29,13 @@ export const MainWrapper = styled.div`
 `;
 
 export const SideBarWrapper = styled.div`
-  width: 17%;
+  width: 20%;
   background-color: #f4f4f4;
   border-right: 1px solid #e0e0e0;
 `;
 
 export const ContentWrapper = styled.div`
-  width: 83%;
+  width: 80%;
   flex-grow: 1;
   margin: 0.2rem;
   border-radius: 0.3rem;

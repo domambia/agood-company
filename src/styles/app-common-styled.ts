@@ -7,6 +7,11 @@ export const Container = styled.div`
   padding: 0 1rem;
   width: 100%;
 `;
+
+export const PageWrapper = styled.div`
+  padding: 1rem;
+  padding: 3rem;
+`;
 export const Link = styled.a``;
 
 export const Paragraph = styled.p`

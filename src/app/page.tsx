@@ -1,9 +1,9 @@
-import { Skeleton } from "@/components/Skeleton";
-import { Container } from "@/styles/app-common-styled";
+import { Button } from "@/components/Button";
+import { PageWrapper } from "@/styles/app-common-styled";
 
 export default function Home() {
   return (
-    <Container>
+    <PageWrapper>
       {/* <div
         style={{
           display: "flex",
@@ -26,7 +26,15 @@ export default function Home() {
         <Skeleton width="100%" height="20px" />
         <Skeleton width="100%" height="20px" />
       </div> */}
-      PP
-    </Container>
+      <Button $variant="primary">Primary Button</Button>
+      <Button $variant="secondary">Secondary Button</Button>
+      <Button $variant="icon">
+        <svg>/* Icon SVG */</svg>
+      </Button>
+      <Button $variant="connect">Connect Button</Button>
+      <Button $variant="nav" $isActive>
+        Navigation Button
+      </Button>
+    </PageWrapper>
   );
 }
