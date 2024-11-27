@@ -8,6 +8,7 @@ import {
   ChartNoAxesCombinedIcon,
   SettingsIcon,
   HeadsetIcon,
+  PlayCircle,
 } from "lucide-react";
 import { Paragraph } from "@/styles/app-common-styled";
 import React from "react";
@@ -127,6 +128,12 @@ export const HeadingAdvert = styled.h1`
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
+export const AdvertImageContent = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 export const AdvertImage = styled.img`
   width: 100%;
   height: 100%;
@@ -134,6 +141,17 @@ export const AdvertImage = styled.img`
   margin-top: 1rem;
 `;
 
+export const OverlayIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+`;
 const LeftIndicator = styled.div`
   width: 4px;
   height: 60%;
@@ -150,7 +168,10 @@ interface SideNavProps {
 export const SideNav: React.FC<SideNavProps> = ({ $toggle }) => {
   const { isLoading } = useLoading();
   return isLoading ? (
-    <SideBar $toggle={$toggle}>
+    <SideBar
+      $toggle={$toggle}
+      style={{ background: "rgba(227, 250, 232, 0.7)" }}
+    >
       <NavSeperator>
         <SideBarHeader
           $toggle={$toggle}
@@ -250,7 +271,12 @@ export const SideNav: React.FC<SideNavProps> = ({ $toggle }) => {
           <Paragraph>
             Check out the new dashboard view. Pages now load faster.
           </Paragraph>
-          <AdvertImage src="/cover.svg" alt="Feature" />
+          <AdvertImageContent>
+            <AdvertImage src="/cover.svg" alt="Feature" />
+            <OverlayIcon>
+              <PlayCircle height={24} width={24} color="white" />
+            </OverlayIcon>
+          </AdvertImageContent>
         </SideBarAdvertisement>
       </NavSeperator>
     </SideBar>

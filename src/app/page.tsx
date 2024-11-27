@@ -32,9 +32,13 @@ export default function Home() {
   ]);
 
   return (
-    <PageWrapper>
+    <PageWrapper
+      style={{
+        backgroundColor: isLoading ? "#fbf2fb" : "",
+      }}
+    >
       {isLoading ? (
-        <FlexContainer>
+        <FlexContainer style={{ backgroundColor: "#fbf2fb" }}>
           <Skeleton width="10%" height="20px" />
           <Skeleton width="10%" height="20px" />
         </FlexContainer>

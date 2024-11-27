@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { SideBar, SideNav } from "../SideNav/SideNav";
 import React, { useState } from "react";
 import { devices } from "@/styles";
+import { useLoading } from "@/hooks/useLoading";
 
 interface WrapperProps {
   children?: React.ReactNode;
@@ -11,6 +12,7 @@ interface WrapperProps {
 export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
   const [toggle, setToggle] = useState("false");
 
+  const { isLoading } = useLoading();
   const handleToggle = () => {
     if (toggle === "false") {
       setToggle("true");
@@ -27,7 +29,9 @@ export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
         </SideBar>
       </SideBarWrapper>
 
-      <ContentWrapper $toggle={toggle}>{children}</ContentWrapper>
+      <ContentWrapper $toggle={toggle} $isLoading={isLoading}>
+        {children}
+      </ContentWrapper>
     </MainWrapper>
   );
 };
@@ -48,13 +52,18 @@ export const SideBarWrapper = styled.div<{ $toggle: string }>`
   }
 `;
 
-export const ContentWrapper = styled.div<{ $toggle: string }>`
+export const ContentWrapper = styled.div<{
+  $toggle: string;
+  $isLoading: boolean;
+}>`
   width: ${({ $toggle }) => ($toggle == "false" ? "80%" : "95%")};
   flex-grow: 1;
   margin: 0.2rem;
   border-radius: 0.3rem;
   padding: 0.8rem 0.5rem;
   overflow-y: auto;
+  background-color: ${({ $isLoading }) => ($isLoading ? "#fbf2fb" : "")};
+  height: ${({ $isLoading }) => ($isLoading ? "100vh" : "")};
 
   @media ${devices.mobile} {
     width: 100% !important;

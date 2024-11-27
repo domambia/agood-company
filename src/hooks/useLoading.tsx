@@ -20,7 +20,7 @@ export const LoadingProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 20000);
+    }, 3000);
   }, []);
 
   return (
