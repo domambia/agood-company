@@ -19,6 +19,7 @@ const SearchBarWrapper = styled.div`
   border-radius: 10px;
   border: 1px solid #ddd;
   height: 52px;
+  padding: 0.5rem 0.5rem;
 `;
 const SearchBarInput = styled.input`
   padding: 8px;
