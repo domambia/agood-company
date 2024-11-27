@@ -21,13 +21,13 @@ export const Wrapper: React.FC<WrapperProps> = ({ children }) => {
 
   return (
     <MainWrapper>
-      <SideBarWrapper>
+      <SideBarWrapper $toggle={toggle}>
         <SideBar onClick={() => handleToggle()} $toggle={toggle}>
           <SideNav $toggle={toggle} />
         </SideBar>
       </SideBarWrapper>
 
-      <ContentWrapper>{children}</ContentWrapper>
+      <ContentWrapper $toggle={toggle}>{children}</ContentWrapper>
     </MainWrapper>
   );
 };
@@ -39,8 +39,8 @@ export const MainWrapper = styled.div`
   margin: 0;
 `;
 
-export const SideBarWrapper = styled.div`
-  width: 20%;
+export const SideBarWrapper = styled.div<{ $toggle: string }>`
+  width: ${({ $toggle }) => ($toggle == "false" ? "20%" : "6%")};
   background-color: #f4f4f4;
   border-right: 1px solid #e0e0e0;
   @media ${devices.mobile} {
@@ -48,8 +48,8 @@ export const SideBarWrapper = styled.div`
   }
 `;
 
-export const ContentWrapper = styled.div`
-  width: 80%;
+export const ContentWrapper = styled.div<{ $toggle: string }>`
+  width: ${({ $toggle }) => ($toggle == "false" ? "80%" : "95%")};
   flex-grow: 1;
   margin: 0.2rem;
   border-radius: 0.3rem;

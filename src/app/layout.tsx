@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { BaseLayout } from "@/components/wraps/BaseLayout";
+import { LoadingProvider } from "@/hooks/useLoading";
 
 const metadata: Metadata = {
   title: "A Good Company",
@@ -27,7 +28,9 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
-        <BaseLayout>{children}</BaseLayout>
+        <LoadingProvider>
+          <BaseLayout>{children}</BaseLayout>
+        </LoadingProvider>
       </body>
     </html>
   );

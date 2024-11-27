@@ -9,6 +9,8 @@ import {
   CardIcon,
   CardActions,
 } from "@/components/Card";
+import { Skeleton } from "@/components/Skeleton";
+import { useLoading } from "@/hooks/useLoading";
 import {
   FlexContainer,
   Heading,
@@ -19,7 +21,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  const { isLoading } = useLoading();
   const [data, setData] = useState([
     "Item 1",
     "Item 2",
@@ -28,81 +30,94 @@ export default function Home() {
     "Item 5,Item 5,Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5",
     "Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, ",
   ]);
+
   return (
     <PageWrapper>
-      {/* <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "16px",
-          padding: "16px",
-          border: "1px solid #ddd",
-          borderRadius: "8px",
-        }}
-      >
-        <Skeleton width="100%" height="200px" borderradius="8px" />
-        <Skeleton width="60%" height="1.5em" borderradius="4px" />
-        <Skeleton width="80%" height="1em" borderradius="4px" />
-        <Skeleton width="70%" height="1em" borderradius="4px" />
-      </div> */}
-      {/* <div style={{ padding: "16px", display: "grid", gap: "16px" }}>
-        <Skeleton width="100%" height="50px" withIcon={true} />
-        <Skeleton width="100%" height="200px" />
-        <Skeleton width="100%" height="20px" />
-        <Skeleton width="100%" height="20px" />
-        <Skeleton width="100%" height="20px" />
-      </div> */}
       <FlexContainer>
         <Heading $level={5}> Your Items</Heading>
         <Heading $level={5}> Show All</Heading>
       </FlexContainer>
 
       <CardWrapper>
-        {data.map((item, index) => (
-          <Card
-            key={index}
-            $backgroundcolor="#ffff"
-            $padding="2rem"
-            $borderradius="16px"
-          >
-            <CardHeader>
-              <CardIcon $type="normal" $bgcolor="#F7F2FF">
-                <WavesIcon size={24} color="#793BF2" />
-              </CardIcon>
-              <CardIcon $type="rounded" $bgcolor="#F4F5F6">
-                <StarIcon size={24} color="#333" />
-              </CardIcon>
-            </CardHeader>
+        {isLoading &&
+          data.map((_item, index) => (
+            <Card
+              key={index}
+              $backgroundcolor="#ffff"
+              $padding="2rem"
+              $borderradius="16px"
+            >
+              <CardHeader>
+                <Skeleton width="100%" height="50px" withIcon={true} />
+              </CardHeader>
 
-            <CardHeader style={{ alignSelf: "flex-start", gap: "0.3rem" }}>
-              <CardTitle
+              <CardHeader
                 style={{
-                  color: "#656D76",
-                  fontWeight: "normal",
-                  display: "flex",
-                  gap: "0.1rem",
-                  alignItems: "center",
-                  alignContent: "center",
+                  alignSelf: "flex-start",
+                  gap: "0.3rem",
+                  width: "21.5rem",
                 }}
               >
-                <span>Timbuk2</span>
-                <DotIcon size={8} />
-              </CardTitle>
-              <CardTime>5 days ago</CardTime>
-            </CardHeader>
-            <CardBody>
-              <p>{item.length > 45 ? item.substring(0, 45) + "  ..." : item}</p>
-            </CardBody>
-            <CardActions>
-              <Button $variant="primary" $color="#494F55">
-                Download
-              </Button>
-              <Button $variant="secondary" $color="#793BF2">
-                View
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
+                <Skeleton width="100%" height="20px" />
+              </CardHeader>
+              <CardBody style={{ width: "21.5rem" }}>
+                <Skeleton width="100%" height="20px" />
+              </CardBody>
+              <CardActions>
+                <Skeleton width="95px" height="42px" />
+                <Skeleton width="60px" height="42px" />
+              </CardActions>
+            </Card>
+          ))}
+
+        {!isLoading &&
+          data.map((item, index) => (
+            <Card
+              key={index}
+              $backgroundcolor="#ffff"
+              $padding="2rem"
+              $borderradius="16px"
+            >
+              <CardHeader>
+                <CardIcon $type="normal" $bgcolor="#F7F2FF">
+                  <WavesIcon size={24} color="#793BF2" />
+                </CardIcon>
+                <CardIcon $type="rounded" $bgcolor="#F4F5F6">
+                  <StarIcon size={24} color="#333" />
+                </CardIcon>
+              </CardHeader>
+
+              <CardHeader style={{ alignSelf: "flex-start", gap: "0.3rem" }}>
+                <CardTitle
+                  style={{
+                    color: "#656D76",
+                    fontWeight: "normal",
+                    display: "flex",
+                    gap: "0.1rem",
+                    alignItems: "center",
+                    alignContent: "center",
+                  }}
+                >
+                  <span>Timbuk2</span>
+                  <DotIcon size={8} />
+                </CardTitle>
+                <CardTime>5 days ago</CardTime>
+              </CardHeader>
+              <CardBody>
+                <p>
+                  {item.length > 45 ? item.substring(0, 45) + "  ..." : item}
+                </p>
+              </CardBody>
+              <CardActions>
+                <Button $variant="primary" $color="#494F55">
+                  Download
+                </Button>
+                <Button $variant="secondary" $color="#793BF2">
+                  View
+                </Button>
+              </CardActions>
+            </Card>
+          ))}
       </CardWrapper>
     </PageWrapper>
   );

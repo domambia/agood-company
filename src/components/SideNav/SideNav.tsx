@@ -12,6 +12,8 @@ import {
 import { Paragraph } from "@/styles/app-common-styled";
 import React from "react";
 import { devices } from "@/styles";
+import { useLoading } from "@/hooks/useLoading";
+import { Skeleton } from "../Skeleton";
 
 export const SideBar = styled.div<{ $toggle: string }>`
   width: ${({ $toggle }) => ($toggle == "false" ? "17.5rem" : "5.0625rem")};
@@ -146,7 +148,46 @@ interface SideNavProps {
 }
 
 export const SideNav: React.FC<SideNavProps> = ({ $toggle }) => {
-  return (
+  const { isLoading } = useLoading();
+  return isLoading ? (
+    <SideBar $toggle={$toggle}>
+      <NavSeperator>
+        <SideBarHeader
+          $toggle={$toggle}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <Skeleton width="82%" withIcon height="45px" isDouble={true} />
+        </SideBarHeader>
+        <Skeleton width="100%" height="56px" isDouble={true} />
+        <SideBarContent>
+          <SideBarMenu>
+            <Skeleton width="100%" height="56px" isDouble={true} />
+            <Skeleton width="100%" height="56px" isDouble={true} />
+            <Skeleton width="100%" height="56px" isDouble={true} />
+            <Skeleton width="100%" height="56px" isDouble={true} />
+          </SideBarMenu>
+        </SideBarContent>
+      </NavSeperator>
+      <NavSeperator>
+        <SideBarContent>
+          <SideBarMenu>
+            <Skeleton width="100%" height="56px" isDouble={true} />
+            <Skeleton width="100%" height="56px" isDouble={true} />
+          </SideBarMenu>
+        </SideBarContent>
+        <SideBarAdvertisement $toggle={$toggle}>
+          <Skeleton width="100%" height="10px" />
+          <Skeleton width="100%" height="8px" />
+          <Skeleton width="100%" height="8px" />
+          <Skeleton width="100%" height="150px" />
+        </SideBarAdvertisement>
+      </NavSeperator>
+    </SideBar>
+  ) : (
     <SideBar $toggle={$toggle}>
       <NavSeperator>
         <SideBarHeader $toggle={$toggle}>

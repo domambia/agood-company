@@ -71,6 +71,20 @@ export const Card = styled.div<{
   @media ${devices.mobile} {
     flex: 1 1 100%;
     max-width: 100%;
-    height: 17rem;
+    gap: 30px;
+    height: 272px;
+    font-size: 14px;
+  }
+  @media ${devices.tablet} {
+    gap: 30px;
+    height: 272px;
+    font-size: 14px;
+  }
+
+  @media ${devices.desktop} {
+    gap: 30px;
+    height: 272px;
+    font-size: 14px;
+    padding: 0.3rem 0.5rem;
   }
 `;

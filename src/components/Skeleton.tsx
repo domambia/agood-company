@@ -29,13 +29,15 @@ const SkeletonWrapper = styled.div<{
 const SkeletonContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
 `;
 
-const IconPlaceholder = styled(SkeletonWrapper)`
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
+const IconPlaceholder = styled(SkeletonWrapper)<{ $type?: string }>`
+  width: 48px;
+  height: 48px;
+  border-radius: ${({ $type }) => ($type == "rounded" ? "50%" : "8px")};
 `;
 
 const TextPlaceholder = styled(SkeletonWrapper)`
@@ -47,6 +49,7 @@ type SkeletonProps = {
   height?: string;
   borderradius?: string;
   withIcon?: boolean;
+  isDouble?: boolean;
 };
 
 export const Skeleton: React.FC<SkeletonProps> = ({
@@ -54,12 +57,18 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   height,
   borderradius,
   withIcon,
+  isDouble,
 }) => {
   if (withIcon) {
-    return (
+    return isDouble ? (
+      <SkeletonContainer>
+        <IconPlaceholder $type="rounded" />
+        <TextPlaceholder width={width} height={height} />
+      </SkeletonContainer>
+    ) : (
       <SkeletonContainer>
         <IconPlaceholder />
-        <TextPlaceholder width={width} height={"20px"} />
+        <IconPlaceholder $type="rounded" />
       </SkeletonContainer>
     );
   }
