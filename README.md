@@ -1,6 +1,6 @@
 # AGoodCompany
 
-This is a front-end test application, written in nextjs with typescript.
+This is a front-end application, written in nextjs with typescript, & styled-components.
 
 First, run the development server:
 
@@ -33,4 +33,4 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ### Mobile View
 
-<img src="read-assets/mobile.png" alt="Loading">
+<img src="read-assets/mobile.png" alt="Loading"  width="400">
