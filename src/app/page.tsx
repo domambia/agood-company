@@ -33,10 +33,17 @@ export default function Home() {
 
   return (
     <PageWrapper>
-      <FlexContainer>
-        <Heading $level={5}> Your Items</Heading>
-        <Heading $level={5}> Show All</Heading>
-      </FlexContainer>
+      {isLoading ? (
+        <FlexContainer>
+          <Skeleton width="10%" height="20px" />
+          <Skeleton width="10%" height="20px" />
+        </FlexContainer>
+      ) : (
+        <FlexContainer>
+          <Heading $level={5}> Your Items</Heading>
+          <Heading $level={5}> Show All</Heading>
+        </FlexContainer>
+      )}
 
       <CardWrapper>
         {isLoading &&
