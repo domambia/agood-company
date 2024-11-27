@@ -91,6 +91,7 @@ export const SideBarMenuItem = styled.div<{
   border-radius: 0.5rem;
   position: relative;
   height: 56px;
+  justify-content: ${({ $toggle }) => ($toggle == "true" ? "center" : "")};
   cursor: pointer;
   transition: all 0.5s ease;
   background-color: ${({ theme, $isactive }) =>
