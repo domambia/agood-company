@@ -27,8 +27,8 @@ export default function Home() {
     "Item 2",
     "Item 3 , Item 3, Item Item 3, Item 3, Item 3",
     "Item 4",
-    "Item 5,Item 5,Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5 Item 5",
-    "Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, ",
+    "Item 5,Item 5,Item 5 Item 5 Item 5 Item 5 Item 5 Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5",
+    "Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5, Item 5",
   ]);
 
   return (

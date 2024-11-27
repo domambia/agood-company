@@ -66,7 +66,7 @@ export const FlexContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 `;
 export const FlexItem = styled.div`
   flex: 1;
