@@ -10,32 +10,41 @@ import {
   HeadsetIcon,
 } from "lucide-react";
 import { Paragraph } from "@/styles/app-common-styled";
+import React from "react";
+import { devices } from "@/styles";
 
-export const SideBar = styled.div`
-  width: 17.5rem;
+export const SideBar = styled.div<{ $toggle: string }>`
+  width: ${({ $toggle }) => ($toggle == "false" ? "17.5rem" : "5.0625rem")};
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme }) => theme.colors.primary || "#fff"};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  transition: all 0.5s ease;
+  padding: ${({ $toggle }) => ($toggle == "false" ? "1rem" : "0.5rem")};
   margin: 0.2rem;
   border-radius: 0.3rem;
   position: fixed;
   top: 0;
   left: 0;
-  /* z-index: 100; */
-  transition: all 0.5s ease;
   color: #333;
-  &.show {
+
+  @media ${devices.mobile} {
+    display: none;
   }
 `;
-export const SideBarHeader = styled.div`
+export const SideBarHeader = styled.div<{ $toggle: string }>`
   display: flex;
   align-items: center;
+  justify-content: ${({ $toggle }) => ($toggle === "false" ? "" : "center")};
   gap: 1rem;
   margin-bottom: 1rem;
+
+  & > div {
+    &:last-child {
+      display: ${({ $toggle }) => ($toggle === "false" ? "block" : "none")};
+    }
+  }
 `;
 export const SideBarHeaderIcon = styled.div`
   font-size: 1.2rem;
@@ -55,7 +64,12 @@ export const SideBarHeaderTitle = styled.div`
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
-export const SideBarSearch = styled.div``;
+export const SideBarSearch = styled.div<{ $toggle: string }>`
+  input {
+    display: ${({ $toggle }) => ($toggle === "false" ? "block" : "none")};
+    width: 100%;
+  }
+`;
 export const SideBarContent = styled.div`
   display: flex;
   flex-direction: column;
@@ -63,18 +77,27 @@ export const SideBarContent = styled.div`
   padding: 1rem 0;
 `;
 export const SideBarMenu = styled.div``;
-export const SideBarMenuItem = styled.div`
+export const SideBarMenuItem = styled.div<{
+  $isactive?: string;
+  $toggle: string;
+}>`
   display: flex;
   gap: 1rem;
   align-items: center;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
+  position: relative;
   height: 56px;
   cursor: pointer;
   transition: all 0.5s ease;
+  background-color: ${({ theme, $isactive }) =>
+    $isactive === "true" ? theme.colors.highlight : "$fff"};
   &:hover {
     background-color: ${({ theme }) => theme.colors.highlight};
     color: ${({ theme }) => theme.colors.text.secondary};
+  }
+  p {
+    display: ${({ $toggle }) => ($toggle == "false" ? "block" : "none")};
   }
   & > div {
     & > svg {
@@ -91,10 +114,12 @@ export const MenuItemTitle = styled.p`
   color: ${({ theme }) => theme.colors.text.secondary};
   font-family: ${({ theme }) => theme.fonts.main};
 `;
-export const SideBarAdvertisement = styled.div``;
+export const SideBarAdvertisement = styled.div<{ $toggle: string }>`
+  display: ${({ $toggle }) => ($toggle == "false" ? "block" : "none")};
+`;
 
 export const NavSeperator = styled.div``;
-export const Heading = styled.h1`
+export const HeadingAdvert = styled.h1`
   font-size: 16px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text.secondary};
@@ -107,39 +132,53 @@ export const AdvertImage = styled.img`
   margin-top: 1rem;
 `;
 
-export const SideNav = () => {
+const LeftIndicator = styled.div`
+  width: 4px;
+  height: 60%;
+  background-color: #7139ec;
+  border-radius: 0 8px 8px 0;
+  position: absolute;
+  left: 0;
+`;
+
+interface SideNavProps {
+  $toggle: string;
+}
+
+export const SideNav: React.FC<SideNavProps> = ({ $toggle }) => {
   return (
-    <SideBar>
+    <SideBar $toggle={$toggle}>
       <NavSeperator>
-        <SideBarHeader>
+        <SideBarHeader $toggle={$toggle}>
           <SideBarHeaderIcon>AG</SideBarHeaderIcon>
           <SideBarHeaderTitle>AGoodCompany</SideBarHeaderTitle>
         </SideBarHeader>
-        <SideBarSearch>
+        <SideBarSearch $toggle={$toggle}>
           <SearchBar />
         </SideBarSearch>
         <SideBarContent>
           <SideBarMenu>
-            <SideBarMenuItem>
+            <SideBarMenuItem $isactive={true.toString()} $toggle={$toggle}>
+              <LeftIndicator />
               <MenuItemIcon>
                 <HouseIcon height={17} width={18} fillOpacity={10} />
               </MenuItemIcon>
               <MenuItemTitle>Home</MenuItemTitle>
             </SideBarMenuItem>
 
-            <SideBarMenuItem>
+            <SideBarMenuItem $toggle={$toggle}>
               <MenuItemIcon>
                 <VibrateIcon height={17} width={18} />
               </MenuItemIcon>
               <MenuItemTitle>Menu 1</MenuItemTitle>
             </SideBarMenuItem>
-            <SideBarMenuItem>
+            <SideBarMenuItem $toggle={$toggle}>
               <MenuItemIcon>
                 <StoreIcon height={17} width={18} />
               </MenuItemIcon>
               <MenuItemTitle>Menu 2</MenuItemTitle>
             </SideBarMenuItem>
-            <SideBarMenuItem>
+            <SideBarMenuItem $toggle={$toggle}>
               <MenuItemIcon>
                 <ChartNoAxesCombinedIcon height={17} width={18} />
               </MenuItemIcon>
@@ -151,13 +190,13 @@ export const SideNav = () => {
       <NavSeperator>
         <SideBarContent>
           <SideBarMenu>
-            <SideBarMenuItem>
+            <SideBarMenuItem $toggle={$toggle}>
               <MenuItemIcon>
                 <SettingsIcon height={17} width={18} />
               </MenuItemIcon>
               <MenuItemTitle>Settings</MenuItemTitle>
             </SideBarMenuItem>
-            <SideBarMenuItem>
+            <SideBarMenuItem $toggle={$toggle}>
               <MenuItemIcon>
                 <HeadsetIcon height={17} width={18} />
               </MenuItemIcon>
@@ -165,8 +204,8 @@ export const SideNav = () => {
             </SideBarMenuItem>
           </SideBarMenu>
         </SideBarContent>
-        <SideBarAdvertisement>
-          <Heading>Feature Available now!</Heading>
+        <SideBarAdvertisement $toggle={$toggle}>
+          <HeadingAdvert>Feature Available now!</HeadingAdvert>
           <Paragraph>
             Check out the new dashboard view. Pages now load faster.
           </Paragraph>

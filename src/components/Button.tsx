@@ -2,13 +2,16 @@
 import styled, { css } from "styled-components";
 
 export const primaryStyle = css`
-  background-color: #306c6d;
-  color: white;
-  border: 2px solid transparent;
+  background-color: #fff;
+  color: #494f55;
+  border: 0.5px solid #494f55;
+
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   &:hover {
     background-color: #4744aa;
+    background-color: ${({ theme }) => theme.colors.secondary};
     color: white;
+    border: 0.5px solid #4744aa;
   }
   &:focus {
     border-color: #000;
@@ -16,16 +19,17 @@ export const primaryStyle = css`
 `;
 
 export const secondaryStyle = css`
-  background: rgba(77, 71, 122, 0.25);
-  color: #fefefe;
-  border: 0.5px solid rgba(186, 182, 249, 0.25);
+  background: #fff;
+  color: #793bf2;
+  border: 0.5px solid #793bf2;
   display: flex;
   align-items: center;
   gap: 5px;
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
   &:hover {
-    background-color: #4744aa;
-    color: white;
+    background-color: ${({ theme }) => theme.colors.highlight};
+    color: #494f55;
+    border: 0.5px solid #494f55;
     border: none;
   }
   &:focus {
@@ -104,8 +108,8 @@ export const Button = styled.button<{
   $isActive?: boolean;
   $borderRadius?: string;
 }>`
-  font-size: 16px;
-  padding: ${({ $padding }) => $padding || "0.5rem 1rem"};
+  font-size: 14px;
+  padding: 12px;
   border-radius: ${({ $borderRadius }) => $borderRadius || "4px"};
   cursor: pointer;
   transition: background-color 0.3s, border-color 0.3s;
